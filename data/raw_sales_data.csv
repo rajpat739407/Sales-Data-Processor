@@ -1,0 +1,8 @@
+order_id,date,product,price,currency,quantity,customer_id
+1001,2023-10-25,Widget A,15.99,USD,2,C101
+1002,2023/10/25,Gadget B,24.50,EUR,1,
+1003,2023-10-26,Widget A,15.99,USD,1,C102
+1004,2023-10-26,Thing C,,GBP,3,C103
+1005,2023-10-27,Gadget B,24.50,EUR,2,C104
+1005,2023-10-27,Gadget B,24.50,EUR,2,C104  # Duplicate
+1006,2023-10-27,Thing C,9.99,GBP,-1,C105   # Negative quantity

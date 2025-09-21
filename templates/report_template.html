@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Sales Report - {{ date }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { text-align: center; }
+        .plot { width: 100%; max-width: 800px; display: block; margin: 30px auto; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .summary { background-color: #f9f9f9; padding: 15px; border-radius: 5px; }
+        .no-data { 
+            background-color: #f8f9fa; 
+            padding: 20px; 
+            text-align: center; 
+            border: 2px dashed #dee2e6;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Daily Sales Report</h1>
+        <p>Date: <strong>{{ date }}</strong></p>
+    </div>
+
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <p>Total Sales (USD): <strong>${{ "%.2f"|format(total_sales) }}</strong></p>
+        <p>Total Orders: <strong>{{ total_orders }}</strong></p>
+        <p>Average Order Value (AOV): <strong>${{ "%.2f"|format(aov) }}</strong></p>
+    </div>
+
+    <div class="plots">
+        <h2>Sales by Product</h2>
+        {% if sales_by_product_plot %}
+        <img class="plot" src="{{ sales_by_product_plot }}" alt="Sales by Product Chart">
+        {% else %}
+        <div class="no-data">
+            <p>📊 No sales data available for product analysis</p>
+        </div>
+        {% endif %}
+
+        <h2>Daily Sales Trend</h2>
+        {% if daily_trend_plot %}
+        <img class="plot" src="{{ daily_trend_plot }}" alt="Daily Sales Trend Chart">
+        {% else %}
+        <div class="no-data">
+            <p>📈 No date-based sales data available for trend analysis</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="data-table">
+        <h2>Top 5 Orders</h2>
+        {{ top_orders_table | safe }}
+    </div>
+</body>
+</html>
